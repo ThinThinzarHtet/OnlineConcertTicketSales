@@ -5,27 +5,21 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import java.util.List;
 
-
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Concert {
-
+public class Venue {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-
-    @ManyToMany
-    @JoinTable(name = "artistConcert",
-            joinColumns = @JoinColumn(name = "concertId"),
-            inverseJoinColumns = @JoinColumn(name = "concertId")
-    )
-    private List<Artist> artists;
+    private String location;
+    private String type;
+    private Long capacity;
 
     @OneToMany(
             cascade = CascadeType.REMOVE,
             fetch = FetchType.LAZY,
-            mappedBy = "concertId"
+            mappedBy = "venueId"
     )
     private List<Event> events;
 
@@ -45,12 +39,28 @@ public class Concert {
         this.name = name;
     }
 
-    public List<Artist> getArtists() {
-        return artists;
+    public String getLocation() {
+        return location;
     }
 
-    public void setArtists(List<Artist> artists) {
-        this.artists = artists;
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Long getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(Long capacity) {
+        this.capacity = capacity;
     }
 
     public List<Event> getEvents() {
