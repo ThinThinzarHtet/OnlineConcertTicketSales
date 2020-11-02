@@ -70,4 +70,5 @@ public class Venue {
     public void setEvents(List<Event> events) {
         this.events = events;
     }
+
 }

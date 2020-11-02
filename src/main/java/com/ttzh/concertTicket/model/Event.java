@@ -3,8 +3,8 @@ package com.ttzh.concertTicket.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.sql.Time;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -16,10 +16,18 @@ public class Event {
     @Temporal(TemporalType.DATE)
     private Date startDate;
     private Date endDate;
-    private Time startTime;
-    private Time endTime;
+    @Temporal(TemporalType.TIME)
+    private Date startTime;
+    private Date endTime;
     private Long venueId;
     private Long concertId;
+
+    @OneToMany(
+            cascade = CascadeType.REMOVE,
+            fetch = FetchType.LAZY,
+            mappedBy = "eventId"
+    )
+    private Set<Ticket> tickets;
 
     public Long getId() {
         return id;
@@ -53,19 +61,19 @@ public class Event {
         this.endDate = endDate;
     }
 
-    public Time getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
-    public Time getEndTime() {
+    public Date getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Time endTime) {
+    public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
 
@@ -83,5 +91,13 @@ public class Event {
 
     public void setConcertId(Long concertId) {
         this.concertId = concertId;
+    }
+
+    public Set<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(Set<Ticket> tickets) {
+        this.tickets = tickets;
     }
 }

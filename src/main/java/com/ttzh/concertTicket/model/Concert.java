@@ -60,4 +60,5 @@ public class Concert {
     public void setEvents(List<Event> events) {
         this.events = events;
     }
+
 }
