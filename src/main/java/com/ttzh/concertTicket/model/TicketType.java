@@ -3,6 +3,7 @@ package com.ttzh.concertTicket.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -16,10 +17,10 @@ public class TicketType {
 
     @OneToMany(
             cascade = CascadeType.REMOVE,
-            fetch =  FetchType.LAZY,
+            fetch = FetchType.LAZY,
             mappedBy = "ticketTypes"
     )
-    private Set<Ticket> tickets;
+    private List<Ticket> tickets;
 
     public Long getId() {
         return id;
@@ -45,11 +46,11 @@ public class TicketType {
         this.price = price;
     }
 
-    public Set<Ticket> getTickets() {
+    public List<Ticket> getTickets() {
         return tickets;
     }
 
-    public void setTickets(Set<Ticket> tickets) {
+    public void setTickets(List<Ticket> tickets) {
         this.tickets = tickets;
     }
 }

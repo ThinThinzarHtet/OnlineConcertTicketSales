@@ -3,7 +3,7 @@ package com.ttzh.concertTicket.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -15,16 +15,21 @@ public class Ticket {
     private String serialNo;
     private String rowNo;
     private Long seatNo;
-   /* private Long areaId;*/
-    private Long eventId;
+    /*private Long areaId;
+    private Long eventId;*/
     private Long orderId;
 
-    private List<Concert> concerts;
+    @ManyToOne(fetch = FetchType.LAZY)
+    /*@JoinColumn(name = "eventId", nullable = false)*/
+    @JsonIgnoreProperties("tickets")
+    private Event events;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "areaId")
+    /*@JoinColumn(name = "areaId", nullable = false)*/
     @JsonIgnoreProperties("tickets")
-    private List<TicketType> ticketTypes;
+    private TicketType ticketTypes;
+
+
 
     public Long getId() {
         return id;
@@ -66,27 +71,20 @@ public class Ticket {
         this.orderId = orderId;
     }
 
-    public List<Concert> getConcerts() {
-        return concerts;
-    }
-
-    public void setConcerts(List<Concert> concerts) {
-        this.concerts = concerts;
-    }
-
-    public List<TicketType> getTicketTypes() {
+    public TicketType getTicketTypes() {
         return ticketTypes;
     }
 
-    public void setTicketTypes(List<TicketType> ticketTypes) {
+    public void setTicketTypes(TicketType ticketTypes) {
         this.ticketTypes = ticketTypes;
     }
 
-    public Long getEventId() {
-        return eventId;
+    public Event getEvents() {
+        return events;
     }
 
-    public void setEventId(Long eventId) {
-        this.eventId = eventId;
+    public void setEvents(Event events) {
+        this.events = events;
     }
+
 }

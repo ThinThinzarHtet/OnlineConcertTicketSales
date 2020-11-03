@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,14 +21,17 @@ public class Event {
     private Date startTime;
     private Date endTime;
     private Long venueId;
-    private Long concertId;
+    /*private Long concertId;*/
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Concert concerts;
 
     @OneToMany(
             cascade = CascadeType.REMOVE,
             fetch = FetchType.LAZY,
-            mappedBy = "eventId"
+            mappedBy = "events"
     )
-    private Set<Ticket> tickets;
+    private List<Ticket> tickets;
 
     public Long getId() {
         return id;
@@ -85,19 +89,19 @@ public class Event {
         this.venueId = venueId;
     }
 
-    public Long getConcertId() {
-        return concertId;
+    public Concert getConcerts() {
+        return concerts;
     }
 
-    public void setConcertId(Long concertId) {
-        this.concertId = concertId;
+    public void setConcerts(Concert concerts) {
+        this.concerts = concerts;
     }
 
-    public Set<Ticket> getTickets() {
+    public List<Ticket> getTickets() {
         return tickets;
     }
 
-    public void setTickets(Set<Ticket> tickets) {
+    public void setTickets(List<Ticket> tickets) {
         this.tickets = tickets;
     }
 }

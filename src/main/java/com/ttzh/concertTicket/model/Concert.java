@@ -18,15 +18,16 @@ public class Concert {
     @ManyToMany
     @JoinTable(name = "artistConcert",
             joinColumns = @JoinColumn(name = "concertId"),
-            inverseJoinColumns = @JoinColumn(name = "concertId")
+            inverseJoinColumns = @JoinColumn(name = "artistId")
     )
     private List<Artist> artists;
 
     @OneToMany(
             cascade = CascadeType.REMOVE,
             fetch = FetchType.LAZY,
-            mappedBy = "concertId"
+            mappedBy = "concerts"
     )
+    @JsonIgnoreProperties("concerts")
     private List<Event> events;
 
     public Long getId() {
@@ -60,5 +61,4 @@ public class Concert {
     public void setEvents(List<Event> events) {
         this.events = events;
     }
-
 }
