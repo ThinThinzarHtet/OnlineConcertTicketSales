@@ -20,7 +20,7 @@ public class Ticket {
     private Long orderId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    /*@JoinColumn(name = "eventId", nullable = false)*/
+    @JoinColumn(name = "eventId", nullable = false)
     @JsonIgnoreProperties("tickets")
     private Event events;
 
@@ -28,8 +28,6 @@ public class Ticket {
     /*@JoinColumn(name = "areaId", nullable = false)*/
     @JsonIgnoreProperties("tickets")
     private TicketType ticketTypes;
-
-
 
     public Long getId() {
         return id;

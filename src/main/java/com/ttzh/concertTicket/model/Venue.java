@@ -1,5 +1,6 @@
 package com.ttzh.concertTicket.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -19,8 +20,9 @@ public class Venue {
     @OneToMany(
             cascade = CascadeType.REMOVE,
             fetch = FetchType.LAZY,
-            mappedBy = "venueId"
+            mappedBy = "venues"
     )
+    @JsonIgnore
     private List<Event> events;
 
     public Long getId() {

@@ -1,5 +1,6 @@
 package com.ttzh.concertTicket.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class TicketType {
             fetch = FetchType.LAZY,
             mappedBy = "ticketTypes"
     )
+    @JsonIgnore
     private List<Ticket> tickets;
 
     public Long getId() {

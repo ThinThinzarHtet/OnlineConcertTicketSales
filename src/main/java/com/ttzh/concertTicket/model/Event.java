@@ -1,5 +1,6 @@
 package com.ttzh.concertTicket.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -16,22 +17,32 @@ public class Event {
     private String name;
     @Temporal(TemporalType.DATE)
     private Date startDate;
+    @Temporal(TemporalType.DATE)
     private Date endDate;
     @Temporal(TemporalType.TIME)
     private Date startTime;
+    @Temporal(TemporalType.TIME)
     private Date endTime;
-    private Long venueId;
-    /*private Long concertId;*/
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Concert concerts;
+    /*private Long venueId;
+    private Long concertId;*/
 
     @OneToMany(
             cascade = CascadeType.REMOVE,
             fetch = FetchType.LAZY,
             mappedBy = "events"
     )
+    @JsonIgnore
     private List<Ticket> tickets;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "concertId", nullable = false)
+    @JsonIgnoreProperties("events")
+    @JsonIgnore
+    private Concert concerts;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "venueId", nullable = false)
+    private Venue venues;
 
     public Long getId() {
         return id;
@@ -81,14 +92,6 @@ public class Event {
         this.endTime = endTime;
     }
 
-    public Long getVenueId() {
-        return venueId;
-    }
-
-    public void setVenueId(Long venueId) {
-        this.venueId = venueId;
-    }
-
     public Concert getConcerts() {
         return concerts;
     }
@@ -103,5 +106,13 @@ public class Event {
 
     public void setTickets(List<Ticket> tickets) {
         this.tickets = tickets;
+    }
+
+    public Venue getVenues() {
+        return venues;
+    }
+
+    public void setVenues(Venue venues) {
+        this.venues = venues;
     }
 }
