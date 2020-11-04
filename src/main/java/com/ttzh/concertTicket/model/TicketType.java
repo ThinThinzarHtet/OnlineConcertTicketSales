@@ -21,7 +21,7 @@ public class TicketType {
             fetch = FetchType.LAZY,
             mappedBy = "ticketTypes"
     )
-    @JsonIgnore
+    @JsonIgnoreProperties("ticketTypes")
     private List<Ticket> tickets;
 
     public Long getId() {

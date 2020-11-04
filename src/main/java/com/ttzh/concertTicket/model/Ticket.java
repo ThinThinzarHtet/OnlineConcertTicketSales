@@ -16,8 +16,8 @@ public class Ticket {
     private String rowNo;
     private Long seatNo;
     /*private Long areaId;
-    private Long eventId;*/
-    private Long orderId;
+    private Long eventId;
+    private Long orderId;*/
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "eventId", nullable = false)
@@ -25,9 +25,13 @@ public class Ticket {
     private Event events;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    /*@JoinColumn(name = "areaId", nullable = false)*/
+    @JoinColumn(name = "areaId", nullable = false)
     @JsonIgnoreProperties("tickets")
     private TicketType ticketTypes;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "orderId", nullable = false)
+    private CustomerOrder customerOrders;
 
     public Long getId() {
         return id;
@@ -61,14 +65,6 @@ public class Ticket {
         this.seatNo = seatNo;
     }
 
-    public Long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
-    }
-
     public TicketType getTicketTypes() {
         return ticketTypes;
     }
@@ -85,4 +81,11 @@ public class Ticket {
         this.events = events;
     }
 
+    public CustomerOrder getCustomerOrders() {
+        return customerOrders;
+    }
+
+    public void setCustomerOrders(CustomerOrder customerOrders) {
+        this.customerOrders = customerOrders;
+    }
 }
