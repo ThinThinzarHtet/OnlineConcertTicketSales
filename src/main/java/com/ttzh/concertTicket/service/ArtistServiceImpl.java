@@ -1,10 +1,13 @@
 package com.ttzh.concertTicket.service;
 
 import com.ttzh.concertTicket.model.Artist;
+import com.ttzh.concertTicket.model.Concert;
 import com.ttzh.concertTicket.repository.ArtistRepository;
+import com.ttzh.concertTicket.repository.ConcertRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -12,6 +15,9 @@ import java.util.List;
 public class ArtistServiceImpl implements ArtistService{
     @Autowired
     private ArtistRepository artistRepository;
+
+    @Autowired
+    private ConcertRepository concertRepository;
     @Override
     public List<Artist> getAll() {
         return artistRepository.findAll();

@@ -1,6 +1,7 @@
 package com.ttzh.concertTicket.service;
 
 import com.ttzh.concertTicket.model.Artist;
+import com.ttzh.concertTicket.model.Concert;
 
 import java.util.List;
 

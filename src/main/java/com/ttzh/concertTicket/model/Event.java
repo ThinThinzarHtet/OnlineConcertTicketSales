@@ -1,5 +1,6 @@
 package com.ttzh.concertTicket.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -20,8 +21,10 @@ public class Event {
     @Temporal(TemporalType.DATE)
     private Date endDate;
     @Temporal(TemporalType.TIME)
+    @JsonFormat(pattern = "hh:mm:ss")
     private Date startTime;
     @Temporal(TemporalType.TIME)
+    @JsonFormat(pattern = "hh:mm:ss")
     private Date endTime;
     /*private Long venueId;
     private Long concertId;*/
@@ -35,12 +38,12 @@ public class Event {
     private List<Ticket> tickets;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "concertId", nullable = false)
+    @JoinColumn(name = "concertId")
     @JsonIgnoreProperties("events")
     private Concert concerts;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "venueId", nullable = false)
+    @JoinColumn(name = "venueId")
     private Venue venues;
 
     public Long getId() {

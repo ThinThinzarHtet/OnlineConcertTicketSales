@@ -30,7 +30,7 @@ public class TicketTypeController {
     public TicketType update(@RequestBody TicketType ticketType){
         return ticketTypeService.update(ticketType);
     }
-    @RequestMapping(method = RequestMethod.DELETE)
+    @RequestMapping(value = "{id}",method = RequestMethod.DELETE)
     public void deleteById(@PathVariable Long id){
         ticketTypeService.deleteById(id);
     }

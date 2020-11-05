@@ -1,7 +1,9 @@
 package com.ttzh.concertTicket.controller;
 
 import com.ttzh.concertTicket.model.Artist;
+import com.ttzh.concertTicket.model.Concert;
 import com.ttzh.concertTicket.service.ArtistService;
+import com.ttzh.concertTicket.service.ConcertService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,8 +32,9 @@ public class ArtistController {
     public Artist update(@RequestBody Artist artist){
         return artistService.update(artist);
     }
-    @RequestMapping(method = RequestMethod.DELETE)
+    @RequestMapping(value = "{id}",method = RequestMethod.DELETE)
     public void deleteById(@PathVariable Long id){
         artistService.deleteById(id);
     }
+
 }

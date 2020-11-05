@@ -30,7 +30,7 @@ public class VenueController {
     public Venue update(@RequestBody Venue venue){
         return venueService.update(venue);
     }
-    @RequestMapping(method = RequestMethod.DELETE)
+    @RequestMapping(value = "{id}",method = RequestMethod.DELETE)
     public void deleteById(@PathVariable Long id){
         venueService.deleteById(id);
     }

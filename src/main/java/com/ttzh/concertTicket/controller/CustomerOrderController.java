@@ -31,7 +31,7 @@ public class CustomerOrderController {
     public CustomerOrder update(@RequestBody CustomerOrder customerOrder){
         return  customerOrderService.update(customerOrder);
     }
-    @RequestMapping(method = RequestMethod.DELETE)
+    @RequestMapping(value = "{id}",method = RequestMethod.DELETE)
     public void deleteById(@PathVariable Long id){
         customerOrderService.deleteById(id);
     }

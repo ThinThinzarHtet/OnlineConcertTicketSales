@@ -30,7 +30,7 @@ public class CustomerController {
     public Customer update(@RequestBody Customer customer){
         return customerService.update(customer);
     }
-    @RequestMapping(method = RequestMethod.DELETE)
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public void deleteById(@PathVariable Long id){
         customerService.deleteById(id);
     }
