@@ -31,7 +31,7 @@ public class TicketTypeServiceImpl implements TicketTypeService {
     @Override
     public TicketType update(TicketType ticketType) {
         TicketType oldTicketType = ticketTypeRepository.getOne(ticketType.getId());
-        BeanUtils.copyProperties(oldTicketType, ticketType,"id");
+        BeanUtils.copyProperties(ticketType, oldTicketType,"id");
         return ticketTypeRepository.saveAndFlush(ticketType);
     }
 

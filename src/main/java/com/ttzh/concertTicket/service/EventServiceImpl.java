@@ -30,7 +30,7 @@ public class EventServiceImpl implements EventService{
     @Override
     public Event update(Event event) {
         Event oldEvent = eventRepository.getOne(event.getId());
-        BeanUtils.copyProperties(oldEvent, event,"id");
+        BeanUtils.copyProperties(event, oldEvent,"id","concertId");
         return eventRepository.saveAndFlush(oldEvent);
     }
 

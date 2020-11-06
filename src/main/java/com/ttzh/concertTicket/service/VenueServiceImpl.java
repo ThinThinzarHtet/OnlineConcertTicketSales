@@ -31,7 +31,7 @@ public class VenueServiceImpl implements VenueService {
     @Override
     public Venue update(Venue venue) {
         Venue oldVenue = venueRepository.getOne(venue.getId());
-        BeanUtils.copyProperties(oldVenue, venue,"id");
+        BeanUtils.copyProperties(venue, oldVenue,"id");
         return venueRepository.saveAndFlush(oldVenue);
     }
 

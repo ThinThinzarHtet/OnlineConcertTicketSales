@@ -33,7 +33,7 @@ public class ConcertServiceImpl implements ConcertService{
     @Override
     public Concert update(Concert concert) {
         Concert oldConcert = concertRepository.getOne(concert.getId());
-        BeanUtils.copyProperties(oldConcert, concert,"id");
+        BeanUtils.copyProperties(concert, oldConcert,"id");
         return concertRepository.saveAndFlush(oldConcert);
     }
     @Override

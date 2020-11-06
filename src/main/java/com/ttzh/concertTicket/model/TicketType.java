@@ -22,6 +22,7 @@ public class TicketType {
             mappedBy = "ticketTypes"
     )
     @JsonIgnoreProperties("ticketTypes")
+    @JsonIgnore
     private List<Ticket> tickets;
 
     public Long getId() {

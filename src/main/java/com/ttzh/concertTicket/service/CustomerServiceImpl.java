@@ -31,7 +31,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer update(Customer customer) {
         Customer oldCustomer = customerRepository.getOne(customer.getId());
-        BeanUtils.copyProperties(oldCustomer, customer,"id");
+        BeanUtils.copyProperties(customer, oldCustomer,"id");
         return customerRepository.saveAndFlush(oldCustomer);
     }
 
