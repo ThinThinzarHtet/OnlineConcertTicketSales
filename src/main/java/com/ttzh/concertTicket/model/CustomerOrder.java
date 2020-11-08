@@ -1,5 +1,6 @@
 package com.ttzh.concertTicket.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -16,6 +17,7 @@ public class CustomerOrder {
     private Long id;
     private Long quantity;
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date orderTime;
     private String deliveryAddress;
     private String deliveryEmailAddress;
